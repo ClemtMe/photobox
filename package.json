@@ -1,0 +1,25 @@
+{
+  "name": "photobox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild src/index.html --bundle --outfile=dist/out.js --platform=node",
+    "dev": "esbuild src/index.html --bundle --outfile=dist/out.js --platform=node --watch --sourcemap"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ClemtMe/photobox.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ClemtMe/photobox/issues"
+  },
+  "homepage": "https://github.com/ClemtMe/photobox#readme",
+  "dependencies": {
+    "esbuild": "^0.25.4"
+  }
+}
