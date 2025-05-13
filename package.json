@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "esbuild src/index.html --bundle --outfile=dist/out.js --platform=node",
-    "dev": "esbuild src/index.html --bundle --outfile=dist/out.js --platform=node --watch --sourcemap"
+    "build": "esbuild src/app.js --bundle --outfile=dist/out.js --platform=node",
+    "dev": "esbuild src/app.js --bundle --outfile=dist/out.js --platform=node --watch --sourcemap"
   },
   "repository": {
     "type": "git",
