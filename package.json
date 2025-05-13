@@ -2,7 +2,7 @@
   "name": "photobox",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "esbuild src/app.js --bundle --outfile=dist/out.js --platform=node",
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/ClemtMe/photobox#readme",
   "dependencies": {
-    "esbuild": "^0.25.4"
+    "esbuild": "^0.25.4",
+    "handlebars": "^4.7.8"
   }
 }

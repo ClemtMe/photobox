@@ -1,16 +1,10 @@
 import {loadPicture} from "./photoloader.js";
-import { domain } from "./config.js";
+import {displayPicture} from "./ui";
 
-function getPicture(id) {
-    let photo = loadPicture(id);
-    photo.then((data) => {
-        console.log(data);
-        const img = document.createElement('img');
-        img.src = domain+data.photo.url.href;
-        img.alt = data.photo.titre;
-        document.body.appendChild(img);
-    })
-
+async function getPicture(id) {
+    let data = await loadPicture(id);
+    console.log(data);
+    displayPicture(data.photo);
 }
 
 let numero = window.location.hash.replace("#", "");

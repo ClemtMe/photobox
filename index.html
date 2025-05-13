@@ -5,6 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-<script type="module" src="src/app.js" defer></script>
+<div id="la_photo"></div>
+<script id="la_photo_template" type="text/x-handlebars-template">
+    <img src="{{url}}" alt="{{titre}}" width="300" height="200">
+    <h2>{{titre}}</h2>
+    <p>{{descr}}</p>
+</script>
+<script type="module" src="dist/out.js" defer></script>
 </body>
 </html>
