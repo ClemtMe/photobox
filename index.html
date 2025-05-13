@@ -2,15 +2,39 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/index.css">
     <title>Title</title>
 </head>
 <body>
-<div id="la_photo"></div>
+
+<main id="photo">
+    <div id="la_photo"></div>
+    <div id="la_categorie"></div>
+    <div id="les_commentaires"></div>
+</main>
+
 <script id="la_photo_template" type="text/x-handlebars-template">
-    <img src="{{url}}" alt="{{titre}}" width="300" height="200">
-    <h2>{{titre}}</h2>
+    <h1>Photo{{id}}</h1>
+    <img src="{{url}}" alt="{{titre}}">
+    <h1>{{titre}}</h1>
+    <p>{{type}}, {{width}}x{{height}}</p>
     <p>{{descr}}</p>
 </script>
+<script id="la_categorie_template" type="text/x-handlebars-template">
+    <h2>Catégorie : {{nom}}</h2>
+    <p>{{descr}}</p>
+</script>
+<script id="les_commentaires_template" type="text/x-handlebars-template">
+    <h2>Commentaires :</h2>
+    <ul>
+        {{#each commentaires}}
+            <li>
+                ({{pseudo}}) {{content}}
+            </li>
+        {{/each}}
+    </ul>
+</script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 <script type="module" src="dist/out.js" defer></script>
 </body>
 </html>
