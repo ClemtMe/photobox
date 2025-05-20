@@ -7,10 +7,7 @@
 </head>
 <body>
 
-<main id="photo">
-    <div id="la_photo"></div>
-    <div id="la_categorie"></div>
-    <div id="les_commentaires"></div>
+<main id="gallery">
 </main>
 
 <script id="la_photo_template" type="text/x-handlebars-template">
@@ -34,6 +31,22 @@
         {{/each}}
     </ul>
 </script>
+
+<script id="gallery_template" type="text/x-handlebars-template">
+    <h1>Galerie</h1>
+    <h2>{{type}}</h2>
+    <p>Nombre de photos : {{count}}</p>
+    <ul>
+        {{#each photos}}
+            <li>
+                <h1>Photo {{this.photo.id}}</h1>
+                <h1>{{this.photo.titre}}</h1>
+                <img src="https://webetu.iutnc.univ-lorraine.fr{{this.photo.original.href}}" alt="{{this.photo.titre}}">
+            </li>
+        {{/each}}
+    </ul>
+</script>
+
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 <script type="module" src="dist/out.js" defer></script>
 </body>

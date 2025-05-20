@@ -3,13 +3,17 @@ import {url} from "./config";
 
 
 
-export async function load(){
+export async function load() {
     try {
         const data = await promesse();
-        data.photos.foreach(photo => { photo = loadPicture(photo.id); });
+        for (const photo of data.photos) {
+            let photoData = await loadPicture(photo.photo.id);
+            data.photos.pop(photo);
+            data.photos.push(photoData);
+        }
         let gallerie = data;
         return gallerie;
-    } catch(error) {
+    } catch (error) {
         console.error("Error loading gallery:", error);
         return [];
     }
