@@ -7,7 +7,11 @@
 </head>
 <body>
 
-<main id="gallery">
+<main>
+    <div id="gallery"></div>
+    <div id="la_photo"></div>
+    <div id="la_categorie"></div>
+    <div id="les_commentaires"></div>
 </main>
 
 <script id="la_photo_template" type="text/x-handlebars-template">
@@ -41,8 +45,8 @@
     <button id="last">Dernier</button>
     <ul class="photo-grid">
         {{#each photos}}
-            <li>
-                <img src="{{this.photo.url}}" alt="{{this.photo.titre}}">
+            <li class="photo">
+                <img src="{{this.photo.url}}" alt="{{this.photo.titre}}" data-id="{{this.photo.id}}">
             </li>
         {{/each}}
     </ul>

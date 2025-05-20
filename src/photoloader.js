@@ -12,7 +12,7 @@ export function loadPicture(idPicture) {
 }
 
 export function loadResource(uri) {
-    return fetch(`${domain}/api${uri}`, {credentials: 'include'}).then((response) => {
+    return fetch(`${domain}${uri}`, {credentials: 'include'}).then((response) => {
         if (!response.ok) {
             throw new Error("Network response was not ok");
         }
