@@ -33,17 +33,16 @@
 </script>
 
 <script id="gallery_template" type="text/x-handlebars-template">
-    <h1>Galerie</h1>
-    <h2>{{type}}</h2>
+    <h1>Galerie : {{type}}</h1>
     <p>Nombre de photos : {{count}}</p>
-    <ul>
+    <button id="first">Premier</button>
+    <button id="prev">Précédent</button>
+    <button id="next">Suivant</button>
+    <button id="last">Dernier</button>
+    <ul class="photo-grid">
         {{#each photos}}
             <li>
-                <h1>Photo {{this.photo.id}}</h1>
-                <h1>{{this.photo.titre}}</h1>
                 <img src="{{this.photo.url}}" alt="{{this.photo.titre}}">
-                <p>{{this.photo.type}}, {{this.photo.width}}x{{this.photo.height}}</p>
-                <p>{{this.photo.descr}}</p>
             </li>
         {{/each}}
     </ul>

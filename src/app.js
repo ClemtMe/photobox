@@ -1,6 +1,6 @@
 import {loadPicture, loadResource} from "./photoloader.js";
 import {displayCategory, displayComments, displayPicture} from "./ui";
-import {load} from "./gallery";
+import {load, next, prev} from "./gallery";
 import {display_galerie} from "./gallery_ui";
 
 async function getPicture(id) {

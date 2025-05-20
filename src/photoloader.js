@@ -1,7 +1,7 @@
 import {domain, url} from "./config.js";
 
 export function loadPicture(idPicture) {
-    return fetch(`${url}/photos/${idPicture}`, {credentials: 'include'}).then((response) => {
+    return fetch(`${url}/api/photos/${idPicture}`, {credentials: 'include'}).then((response) => {
         if (!response.ok) {
             throw new Error("Network response was not ok");
         }
@@ -12,7 +12,7 @@ export function loadPicture(idPicture) {
 }
 
 export function loadResource(uri) {
-    return fetch(`${domain}${uri}`, {credentials: 'include'}).then((response) => {
+    return fetch(`${domain}/api${uri}`, {credentials: 'include'}).then((response) => {
         if (!response.ok) {
             throw new Error("Network response was not ok");
         }

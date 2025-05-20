@@ -1,5 +1,6 @@
 import Handlebars from 'handlebars';
 import {domain} from "./config";
+import {first, last, next, prev} from "./gallery";
 
 export function display_galerie(gallery) {
     const templateSource = document.querySelector("#gallery_template").innerHTML
@@ -9,4 +10,8 @@ export function display_galerie(gallery) {
     })
     console.log(gallery);
     document.querySelector("#gallery").innerHTML = templateFunction(gallery);
+    next();
+    prev();
+    first();
+    last();
 }

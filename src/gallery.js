@@ -1,7 +1,9 @@
 import {loadPicture} from "./photoloader";
-import {url} from "./config";
+import {domain, url} from "./config";
 import {display_galerie} from "./gallery_ui";
 
+let page = "/www/canals5/phox/api/photos/";
+let gallerie = null;
 
 export async function load() {
     try {
@@ -11,7 +13,7 @@ export async function load() {
             data.photos = data.photos.filter(item => item !== photo);
             data.photos.push(photoData);
         }
-        let gallerie = data;
+        gallerie = data;
         return gallerie;
     } catch (error) {
         console.error("Error loading gallery:", error);
@@ -20,7 +22,7 @@ export async function load() {
 }
 
 function promesse(){
-    return fetch(`${url}/photos/`, {credentials: 'include'}).then((response) => {
+    return fetch(`${domain}${page}`, {credentials: 'include'}).then((response) => {
         if (!response.ok) {
             throw new Error("Network response was not ok");
         }
@@ -33,8 +35,8 @@ function promesse(){
 export function next(){
     const nextButton = document.querySelector("#next");
     nextButton.addEventListener("click", async () => {
+        page = gallerie.links.next.href;
         const data = await load();
-        data.page++;
         display_galerie(data);
     });
 }
@@ -42,8 +44,26 @@ export function next(){
 export function prev(){
     const prevButton = document.querySelector("#prev");
     prevButton.addEventListener("click", async () => {
+        page = gallerie.links.prev.href;
         const data = await load();
-        data.page--;
+        display_galerie(data);
+    });
+}
+
+export function first(){
+    const nextButton = document.querySelector("#first");
+    nextButton.addEventListener("click", async () => {
+        page = gallerie.links.first.href;
+        const data = await load();
+        display_galerie(data);
+    });
+}
+
+export function last(){
+    const prevButton = document.querySelector("#last");
+    prevButton.addEventListener("click", async () => {
+        page = gallerie.links.last.href;
+        const data = await load();
         display_galerie(data);
     });
 }
