@@ -79,6 +79,10 @@ ul.photo-grid li:hover {
     z-index: 1001;
 }
 
+#close-lightbox:hover {
+    background-color: red;
+}
+
 #prev-lightbox {
     position: absolute;
     top: 50%;
@@ -103,4 +107,8 @@ ul.photo-grid li:hover {
     font-size: 1.2rem;
     cursor: pointer;
     z-index: 1001;
+}
+
+#next-lightbox:hover, #prev-lightbox:hover {
+    background-color: cornflowerblue;
 }
