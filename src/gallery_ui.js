@@ -5,7 +5,6 @@ import {displayCategory, displayComments, displayPicture} from "./ui";
 import {loadPicture, loadResource} from "./photoloader";
 
 let galleryPhotos = null;
-let currentIndex = 0;
 
 export function display_galerie(gallery) {
     const templateSource = document.querySelector("#gallery_template").innerHTML
@@ -50,12 +49,12 @@ function displayLightbox(photo, index) {
 
     //naviguer
     document.getElementById("prev-lightbox").addEventListener("click", () => {
-        index = galleryPhotos.length ? index === 0 : index - 1;
+        index = index === 0 ? galleryPhotos.length-1 : index - 1;
         displayLightbox(galleryPhotos[index], index);
     });
 
     document.getElementById("next-lightbox").addEventListener("click", () => {
-        index = 0 ? index === galleryPhotos.length : index + 1;
+        index = index === galleryPhotos.length-1 ? 0 : index + 1;
         displayLightbox(galleryPhotos[index], index);
     });
 }
