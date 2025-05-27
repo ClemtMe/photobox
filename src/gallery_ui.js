@@ -12,7 +12,6 @@ export function display_galerie(gallery) {
     gallery.photos.forEach(photo => {
         photo.photo.url = domain+photo.photo.url.href;
     })
-    galleryPhotos = gallery.photos;
     console.log(gallery);
     document.querySelector("#gallery").innerHTML = templateFunction(gallery);
     next();
@@ -20,28 +19,16 @@ export function display_galerie(gallery) {
     first();
     last();
     let photos = document.querySelectorAll('.photo img');
+    galleryPhotos = photos;
     photos.forEach((photo, index) => {
         photo.addEventListener('click', async () => {
-            let id = photo.getAttribute('data-id');
-            let dataPicture = await loadPicture(id);
-            displayPicture(dataPicture.photo);
-            let dataCategory = await loadResource(dataPicture.links.categorie.href);
-            dataCategory = dataCategory.categorie;
-            let dataComments = await loadResource(dataPicture.links.comments.href);
-            dataComments = dataComments.comments;
-            displayCategory(dataCategory);
-            displayComments(dataComments);
-            displayLightbox(dataPicture, index);
+            loadEventListeners(index);
+            displayLightboxAndPhoto(photo, index);
         })
     })
 }
 
-function displayLightbox(photo, index) {
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImage = document.getElementById("lightbox-image");
-    lightboxImage.src = photo.photo.url;
-    lightbox.classList.remove("hidden");
-
+function loadEventListeners(index) {
     //fermer lightbox
     document.getElementById("close-lightbox").addEventListener("click", () => {
         document.getElementById("lightbox").classList.add("hidden");
@@ -50,13 +37,30 @@ function displayLightbox(photo, index) {
     //naviguer
     document.getElementById("prev-lightbox").addEventListener("click", () => {
         index = index === 0 ? galleryPhotos.length-1 : index - 1;
-        displayLightbox(galleryPhotos[index], index);
+        displayLightboxAndPhoto(galleryPhotos[index]);
     });
 
     document.getElementById("next-lightbox").addEventListener("click", () => {
         index = index === galleryPhotos.length-1 ? 0 : index + 1;
-        displayLightbox(galleryPhotos[index], index);
+        displayLightboxAndPhoto(galleryPhotos[index]);
     });
+}
+
+async function displayLightboxAndPhoto(photo) {
+    let id = photo.getAttribute('data-id');
+    let dataPicture = await loadPicture(id);
+    displayPicture(dataPicture.photo);
+    let dataCategory = await loadResource(dataPicture.links.categorie.href);
+    dataCategory = dataCategory.categorie;
+    let dataComments = await loadResource(dataPicture.links.comments.href);
+    dataComments = dataComments.comments;
+    displayCategory(dataCategory);
+    displayComments(dataComments);
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightbox-image");
+    lightboxImage.src = dataPicture.photo.url;
+    lightbox.classList.remove("hidden");
 }
 
 
